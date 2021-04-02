@@ -1,10 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 const colors = require('colors');
 const ObjectId = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
-const port = 5000;
+const port = 6565;
 
 require('dotenv').config()
 
@@ -18,22 +18,17 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const app = express()
 
 //middle 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
-// root app
-      app.get('/', (req, res) => {
-         res.send("Assignment 10 by Programming Hero");
-         console.log(`Server working successfully  on ${port}`.magenta);
-    })
-
+ 
 
 // laptop bazar app
 
 client.connect(err => {
   const  productCollection = client.db("assignment-10").collection("assignment");
 
-    
+    console.log(err);
     const adminCollection = client.db("assignment-10").collection("adminCollection");
     
   const  userCollection = client.db("assignment-10").collection("userCollection");
@@ -43,7 +38,14 @@ client.connect(err => {
     console.log(`MongoDb connected for assignment 10 given by programming hero`.magenta);
 
 
-    try {
+    //root app
+      app.get('/', (req, res) => {
+         res.send("Assignment 10 by Programming Hero");
+         
+    })
+
+
+    
         // admin:  add products :
     app.post('/addProduct', (req, res) => {
         const newProduct = req.body;
@@ -100,17 +102,7 @@ client.connect(err => {
         
       
     })
-//  order delete
-        app.delete('/userDelete/:id', (req, res) => {
-        console.log(req.params.id)
-        
-         userCollection.deleteOne({key: ObjectId(req.params.id)})
-        .then(result => {
-          console.log(result);
-          res.send(result.deletedCount > 0);
-        })
-      
-    })
+
 
 // users order & checkout:
 
@@ -132,9 +124,17 @@ client.connect(err => {
         })
     })
 
-    } catch (error) {
-        console.log(error.message);
-    }
+    //  order delete
+        app.delete('/userDelete/:id', (req, res) => {
+        console.log(req.params.id)
+        
+         userCollection.deleteOne({key: ObjectId(req.params.id)})
+        .then(result => {
+          console.log(result);
+          res.send(result.deletedCount > 0);
+        })
+      
+    })
     
 
 
