@@ -97,7 +97,19 @@ client.connect(err => {
           console.log(result);
           res.send(result.deletedCount > 0);
         })
+        
+      
     })
+//   app.delete('/userDelete/:id', (req, res) => {
+//         console.log(req.params.id)
+        
+//          userCollection.deleteOne({_id: ObjectId(req.params.id)})
+//         .then(result => {
+//           console.log(result);
+//           res.send(result.deletedCount > 0);
+//         })
+      
+//     })
 
 // users order & checkout:
 
