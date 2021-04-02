@@ -100,16 +100,17 @@ client.connect(err => {
         
       
     })
-//   app.delete('/userDelete/:id', (req, res) => {
-//         console.log(req.params.id)
+//  order delete
+        app.delete('/userDelete/:id', (req, res) => {
+        console.log(req.params.id)
         
-//          userCollection.deleteOne({_id: ObjectId(req.params.id)})
-//         .then(result => {
-//           console.log(result);
-//           res.send(result.deletedCount > 0);
-//         })
+         userCollection.deleteOne({key: ObjectId(req.params.id)})
+        .then(result => {
+          console.log(result);
+          res.send(result.deletedCount > 0);
+        })
       
-//     })
+    })
 
 // users order & checkout:
 
