@@ -22,6 +22,12 @@ app.use(express.json());
 app.use(cors());
 
  
+    //root app
+      app.get('/', (req, res) => {
+         res.send("Assignment 10 by Programming Hero");
+         
+    })
+
 
 // laptop bazar app
 
@@ -37,12 +43,6 @@ client.connect(err => {
     
     console.log(`MongoDb connected for assignment 10 given by programming hero`.magenta);
 
-
-    //root app
-      app.get('/', (req, res) => {
-         res.send("Assignment 10 by Programming Hero");
-         
-    })
 
 
     
