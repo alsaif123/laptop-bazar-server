@@ -135,6 +135,6 @@ client.connect(err => {
 
 // server port : 
 app.listen(port, ( ) => {
-    console.log(`Server is running on ${port||process.env.PORT} Successfully`.blue);
+    console.log(`Server is running on ${process.env.PORT||port} Successfully`.blue);
 })
  
