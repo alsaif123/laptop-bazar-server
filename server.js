@@ -4,7 +4,7 @@ const cors = require('cors');
 const colors = require('colors');
 const ObjectId = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
-const port = 6565;
+const port =process.env.PORT || 6565;//|| 
 
 require('dotenv').config()
 
@@ -148,6 +148,6 @@ client.connect(err => {
 
 // server port : 
 app.listen(port, ( ) => {
-    console.log(`Server is running on ${process.env.PORT||port} Successfully`.blue);
+    console.log(`Server is running on ${port} Successfully`.blue);
 })
  
